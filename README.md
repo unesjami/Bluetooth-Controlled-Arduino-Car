@@ -1,127 +1,97 @@
-# 🚗 Bluetooth-Controlled Arduino Car
+# Bluetooth-Controlled Arduino Car
 
-A Bluetooth-controlled robotic car built with **Arduino** and a **custom Android application**. This project combines embedded programming, electronics design, Bluetooth communication, and mobile development to create a complete wireless robotic control system.
+<p align="center">
+  <strong>A complete embedded robotics project for real-time wireless vehicle control.</strong>
+</p>
 
----
+<p align="center">
+  <img src="https://img.shields.io/badge/Arduino-C%2B%2B-00979D?style=for-the-badge" alt="Arduino C++">
+  <img src="https://img.shields.io/badge/Bluetooth-HC--05-2563eb?style=for-the-badge" alt="HC-05">
+  <img src="https://img.shields.io/badge/Category-Robotics-7c3aed?style=for-the-badge" alt="Robotics">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-14b8a6?style=for-the-badge" alt="MIT license"></a>
+</p>
 
-## ✨ Features
+![Bluetooth-controlled car](media/car.jpg)
 
-- 📱 Custom Android control application
-- 📡 Bluetooth communication (HC-05)
-- 🤖 Arduino-based motor control
-- 🚗 Forward, Backward, Left, Right & Stop
-- 💡 Front and rear LED control
-- 🔊 Buzzer control
-- 💃 Multiple predefined movement modes
+## Overview
 
----
+This robotic car receives movement and accessory commands over an HC-05 Bluetooth module. Arduino firmware interprets the commands and controls the motors, front and rear lights, and buzzer.
 
-## 🧠 System Architecture
+## Features
 
-```text
-Android App
-     │
- Bluetooth
-     ▼
-   HC-05
-     │
-     ▼
-  Arduino Uno
-     │
-     ▼
- L298N Motor Driver
-     │
-     ▼
- DC Motors
+- Forward, reverse, left, right, and stop controls
+- Four DC gear motors through an L298N motor driver
+- HC-05 serial Bluetooth communication
+- Independent front and rear lights
+- Buzzer control
+- Predefined movement modes
+- Circuit documentation and component list
+
+## Architecture
+
+```mermaid
+flowchart LR
+    A[Mobile controller] -->|Bluetooth| B[HC-05]
+    B --> C[Arduino Uno]
+    C --> D[L298N driver]
+    D --> E[DC motors]
+    C --> F[Lights and buzzer]
 ```
 
----
-
-## 🛠️ Hardware Components
+## Hardware
 
 | Component | Quantity |
-|-----------|:--------:|
+|---|---:|
 | Arduino Uno | 1 |
-| HC-05 Bluetooth Module | 1 |
-| L298N Motor Driver | 1 |
-| DC Gear Motors | 4 |
-| Robot Chassis | 1 |
+| HC-05 Bluetooth module | 1 |
+| L298N motor driver | 1 |
+| DC gear motors | 4 |
 | Wheels | 4 |
-| Battery Pack | 1 |
-| White LEDs | 2 |
-| Red LEDs | 2 |
+| Robot chassis | 1 |
+| Battery pack | 1 |
+| Front LEDs | 2 |
+| Rear LEDs | 2 |
 | Buzzer | 1 |
 
-For the complete list, see **[hardware/components.md](hardware/components.md)**.
+See [hardware/components.md](hardware/components.md) and the [schematic](hardware/schematic.pdf).
 
----
-
-## 📂 Project Structure
+## Repository structure
 
 ```text
-Arduino-Bluetooth-Car/
-│
 ├── arduino/
-│   └── Bluetooth_Car.ino
-│
+│   └── Bluetooth_Car/
+│       └── Bluetooth_Car.ino
 ├── hardware/
-│   ├── schematic.png
+│   ├── components.md
 │   ├── schematic.pdf
-│   └── components.md
-│
-├── media/
-│   └── car.jpg
-│
-├── README.md
-├── LICENSE
-└── .gitignore
+│   └── schematic.png
+└── media/
+    └── car.jpg
 ```
 
----
+## Upload the firmware
 
-## 🔌 Circuit Schematic
+1. Open `arduino/Bluetooth_Car/Bluetooth_Car.ino` in the Arduino IDE.
+2. Select the correct Arduino board and serial port.
+3. Disconnect the HC-05 from the Arduino serial pins if it interferes with uploading.
+4. Upload the sketch.
+5. Reconnect the Bluetooth module and test commands with the motors raised off the surface.
 
-![Circuit Schematic](hardware/schematic.png)
+## Mobile controller
 
----
+The project was built with a custom Android control interface. The Android application source is not currently included in this repository. The Arduino firmware can also be tested with a compatible Bluetooth serial-terminal application that sends the expected commands.
 
-## 📷 Project
+## Power and safety
 
-![Bluetooth-Controlled Arduino Car](media/car.jpg)
+- Use a motor supply suitable for the motors and driver.
+- Connect the Arduino, driver, and Bluetooth grounds together.
+- Do not power the motors directly from the Arduino 5 V pin.
+- Verify motor direction with the wheels off the ground before driving.
 
----
+## License
 
-## 🎯 My Contributions
+Released under the [MIT License](LICENSE).
 
-- Designed the complete electronic schematic
-- Developed the Arduino firmware
-- Built the custom Android control application
-- Implemented Bluetooth communication
-- Integrated hardware and software
-- Tested and validated the complete system
+## Author
 
----
-
-## 💻 Technologies
-
-- Arduino
-- C/C++
-- Android Studio
-- Bluetooth (HC-05)
-- Embedded Systems
-- Electronics
-- Robotics
-
----
-
-## 📄 License
-
-This project is licensed under the **MIT License**.
-
----
-
-## 👨‍💻 Author
-
-**Unes Jami**
-
-*Mechatronics & Robotics | Embedded Systems | AI & Digital Solutions*
+Created by [Unes Jami](https://github.com/unesjami).
